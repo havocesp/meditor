@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from .util import toUtf8
 from .gaction import GlobalAction
+from security import safe_command
 
 logger = logging.getLogger(__name__)
 
@@ -239,7 +240,7 @@ class Workspace(QtWidgets.QTreeWidget):
 
     def onWindowsExplorer(self):
         path = self.getCurrentPath()
-        subprocess.Popen('explorer "%s"' % path, shell=True)
+        safe_command.run(subprocess.Popen, 'explorer "%s"' % path, shell=True)
 
     def onOpenWorkspace(self):
         path = QtWidgets.QFileDialog.getExistingDirectory(
