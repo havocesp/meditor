@@ -82,7 +82,7 @@ def previewWorker(self):
             previewPath = \
                 '<html><body><h1>Error</h1><p>Unknown extension: %s</p></body></html>' \
                 % ext
-        logger.warn('preview %s' % previewPath)
+        logger.warning('preview %s' % previewPath)
         self.updatePreviewViewRequest.emit()
     return
 
@@ -107,7 +107,7 @@ class MainWindow(QtWidgets.QMainWindow):
             ext = os.path.splitext(self._app_exec)[1]
             if ext not in ['.py', '.exe']:
                 self._app_exec += '.exe'
-        logger.warn('app name: %s' % self._app_exec)
+        logger.warning('app name: %s' % self._app_exec)
         self._icon_path = os.path.join(__data_path__, 'meditor-text-editor.ico')
 
         if sys.platform == 'linux':
@@ -128,7 +128,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.icon_theme = 'Embed[%s]' % icon_theme
         else:
             self.icon_theme = 'System'
-        logger.warn('Icon theme name: %s' % self.icon_theme)
+        logger.warning('Icon theme name: %s' % self.icon_theme)
 
         self.setWindowIcon(
             QtGui.QIcon.fromTheme(
@@ -669,7 +669,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.previewQuit = True
         previewEvent.set()
         self.previewWorker.join()
-        logger.warn(' rsteditor end '.center(80, '='))
+        logger.warning(' rsteditor end '.center(80, '='))
         event.accept()
 
     def dragEnterEvent(self, event):
@@ -1100,20 +1100,20 @@ def main():
     logger = logging.getLogger(__name__)
 
     now = datetime.datetime.now()
-    logger.warn('=== %s v%s start on %s ===' % (__app_name__, __app_version__, now))
+    logger.warning('=== %s v%s start on %s ===' % (__app_name__, __app_version__, now))
     logger.debug(args)
-    logger.warn('app  data path: ' + __data_path__)
-    logger.warn('home data path: ' + __home_data_path__)
-    logger.warn('mathjax path: ' + __mathjax_full_path__ or __mathjax_min_path__)
-    logger.warn('log file path: ' + log_file)
+    logger.warning('app  data path: ' + __data_path__)
+    logger.warning('home data path: ' + __home_data_path__)
+    logger.warning('mathjax path: ' + __mathjax_full_path__ or __mathjax_min_path__)
+    logger.warning('log file path: ' + log_file)
 
     # qt.conf
     # [paths]
     # Prefix=PyQt5/Qt
 
     app = QtWidgets.QApplication(sys.argv)
-    logger.warn('app scale factor: %s' % app.devicePixelRatio())
-    logger.warn('qt plugin path: ' + ', '.join(app.libraryPaths()))
+    logger.warning('app scale factor: %s' % app.devicePixelRatio())
+    logger.warning('qt plugin path: ' + ', '.join(app.libraryPaths()))
 
     settings = QtCore.QSettings(__app_path__, 'config')
     value = settings.value('highdpi', False, type=bool)
