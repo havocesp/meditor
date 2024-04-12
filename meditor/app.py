@@ -49,7 +49,7 @@ def previewWorker(self):
         previewEvent.clear()
         previewText = self.previewData['text']
         previewPath = self.previewData['path']
-        logger.debug('Preview %s' % previewPath)
+        logger.debug('Preview %s', previewPath)
         ext = os.path.splitext(previewPath)[1].lower()
         settings = {}
         if not previewText:
@@ -82,7 +82,7 @@ def previewWorker(self):
             previewPath = \
                 '<html><body><h1>Error</h1><p>Unknown extension: %s</p></body></html>' \
                 % ext
-        logger.warn('preview %s' % previewPath)
+        logger.warn('preview %s', previewPath)
         self.updatePreviewViewRequest.emit()
     return
 
@@ -107,7 +107,7 @@ class MainWindow(QtWidgets.QMainWindow):
             ext = os.path.splitext(self._app_exec)[1]
             if ext not in ['.py', '.exe']:
                 self._app_exec += '.exe'
-        logger.warn('app name: %s' % self._app_exec)
+        logger.warn('app name: %s', self._app_exec)
         self._icon_path = os.path.join(__data_path__, 'meditor-text-editor.ico')
 
         if sys.platform == 'linux':
@@ -128,7 +128,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.icon_theme = 'Embed[%s]' % icon_theme
         else:
             self.icon_theme = 'System'
-        logger.warn('Icon theme name: %s' % self.icon_theme)
+        logger.warn('Icon theme name: %s', self.icon_theme)
 
         self.setWindowIcon(
             QtGui.QIcon.fromTheme(
@@ -1100,7 +1100,7 @@ def main():
     logger = logging.getLogger(__name__)
 
     now = datetime.datetime.now()
-    logger.warn('=== %s v%s start on %s ===' % (__app_name__, __app_version__, now))
+    logger.warn('=== %s v%s start on %s ===', __app_name__, __app_version__, now)
     logger.debug(args)
     logger.warn('app  data path: ' + __data_path__)
     logger.warn('home data path: ' + __home_data_path__)
@@ -1112,7 +1112,7 @@ def main():
     # Prefix=PyQt5/Qt
 
     app = QtWidgets.QApplication(sys.argv)
-    logger.warn('app scale factor: %s' % app.devicePixelRatio())
+    logger.warn('app scale factor: %s', app.devicePixelRatio())
     logger.warn('qt plugin path: ' + ', '.join(app.libraryPaths()))
 
     settings = QtCore.QSettings(__app_path__, 'config')

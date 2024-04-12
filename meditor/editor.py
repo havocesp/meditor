@@ -857,7 +857,7 @@ class Editor(QsciScintilla):
         else:
             self.statusChanged.emit('lexer:--')
         t2 = time.process_time()
-        logger.warn('Lexer waste time: %s(%s)' % (t2 - t1, filename))
+        logger.warn('Lexer waste time: %s(%s)', t2 - t1, filename)
 
     def pauseLexer(self, pause=True):
         self._pause_lexer = pause
@@ -884,10 +884,10 @@ class Editor(QsciScintilla):
             if text:
                 tables = None
                 if self.lexer().language() == 'reStructuredText':
-                    logger.debug('Format rst table: %s' % text)
+                    logger.debug('Format rst table: %s', text)
                     tables = MarkupTable.from_rst(text)
                 elif self.lexer().language() == 'Markdown':
-                    logger.debug('Format md table: %s' % text)
+                    logger.debug('Format md table: %s', text)
                     tables = MarkupTable.from_md(text)
                 if tables:
                     mt = tables[0]
@@ -960,15 +960,15 @@ class Editor(QsciScintilla):
         if self.lexer():
             tables = None
             if self.lexer().language() == 'reStructuredText':
-                logger.debug('Format rst table: %s' % text)
+                logger.debug('Format rst table: %s', text)
                 tables = MarkupTable.from_rst(text)
             elif self.lexer().language() == 'Markdown':
-                logger.debug('Format md table: %s' % text)
+                logger.debug('Format md table: %s', text)
                 tables = MarkupTable.from_md(text)
             if tables:
                 mt = tables[0]
         if not mt or mt.is_empty() or mt.is_invalid():
-            logger.debug('Format text table: %s' % text)
+            logger.debug('Format text table: %s', text)
             mt = MarkupTable.from_txt(text, delimeter)
         replaced_text = ''
         if self.lexer():

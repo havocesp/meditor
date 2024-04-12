@@ -233,12 +233,12 @@ class QsciLexerRest(Qsci.QsciLexerCustom):
             m_string = mo.group(0)
             length = len(m_string.encode('utf8'))
             b_offset += length
-            logger.info('match range: %s, %s' % (key, length))
-            logger.debug('match text: %s' % (m_string))
+            logger.info('match range: %s, %s', key, length)
+            logger.debug('match text: %s', (m_string))
             self.setStyling(length, self.styles[key])
             offset = mo.end()
         self.do_InlineStylingText(start, end)
-        logger.debug('end styled: %s(%s)' % (self.editor().getEndStyled(), end))
+        logger.debug('end styled: %s(%s)', self.editor().getEndStyled(), end)
 
     def do_InlineStylingText(self, start, end):
         start_line, _ = self.editor().lineIndexFromPosition(start)
@@ -254,7 +254,7 @@ class QsciLexerRest(Qsci.QsciLexerCustom):
                     m_string = mo.group(1)
                     length = len(m_string.encode('utf8'))
                     m_start = self.editor().positionFromLineIndex(x, mo.start(1))
-                    logger.debug('inline match: %s:%s: %s' % (key, length, m_string))
+                    logger.debug('inline match: %s:%s: %s', key, length, m_string)
                     self.startStyling(m_start)
                     self.setStyling(length, self.inline_styles[key])
         # fix, set last styled char
@@ -271,7 +271,7 @@ class QsciLexerRest(Qsci.QsciLexerCustom):
         if self.editor()._pause_lexer:
             return
         logger.debug(('styling %s:%s' % (start, end)).center(70, '-'))
-        logger.debug('end styled: %s' % self.editor().getEndStyled())
+        logger.debug('end styled: %s', self.editor().getEndStyled())
         # for multiple line syntax
         # fix start
         line_no, _ = self.editor().lineIndexFromPosition(start)
@@ -301,9 +301,9 @@ class QsciLexerRest(Qsci.QsciLexerCustom):
 
         text = self.editor().text(start, end)
         fix_text = self.editor().text(fix_start, fix_end)
-        logger.info('text range: %s %s' % (start, end))
+        logger.info('text range: %s %s', start, end)
         logger.debug(text)
-        logger.info('text range: %s %s' % (fix_start, fix_end))
+        logger.info('text range: %s %s', fix_start, fix_end)
         logger.debug(fix_text)
         self.do_StylingText(fix_start, fix_end)
 
