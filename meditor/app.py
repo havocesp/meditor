@@ -970,7 +970,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.tab_editor.loadFile(path)
         else:
             self.showMessage(self.tr('Shell run "%s"' % path))
-            subprocess.Popen(path, shell=True)
+            subprocess.Popen(path, shell=False)
 
     def onWorkspaceFileDeleted(self, path):
         for x in range(self.tab_editor.count()):
