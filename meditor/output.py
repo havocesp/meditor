@@ -110,7 +110,8 @@ def get_theme_settings(theme):
     return stylesheet
 
 
-def rst2htmlcode(rst_text, theme=None, settings={}):
+def rst2htmlcode(rst_text, theme=None, settings=None):
+    settings = {} if settings is None else settings
     # register graphviz directive
     directives.register_directive('dot', docutils_graphviz.Graphviz)
 
@@ -136,7 +137,8 @@ def rst2htmlcode(rst_text, theme=None, settings={}):
     return output
 
 
-def rst2html(rst_file, filename, theme=None, settings={}):
+def rst2html(rst_file, filename, theme=None, settings=None):
+    settings = {} if settings is None else settings
     # register graphviz directive
     directives.register_directive('dot', docutils_graphviz.Graphviz)
 
@@ -165,7 +167,8 @@ def rst2html(rst_file, filename, theme=None, settings={}):
     return output
 
 
-def rst2odt(rst_file, filename, theme=None, settings={}):
+def rst2odt(rst_file, filename, theme=None, settings=None):
+    settings = {} if settings is None else settings
     # register graphviz directive
     directives.register_directive('dot', docutils_graphviz.Graphviz)
 
@@ -214,7 +217,8 @@ def get_md_themes():
     return themes
 
 
-def md2htmlcode(markup_file, theme=None, settings={}):
+def md2htmlcode(markup_file, theme=None, settings=None):
+    settings = {} if settings is None else settings
     mathjax = settings.get('mathjax')
     extensions = [
         'markdown.extensions.abbr',
@@ -340,7 +344,8 @@ def htmlcode(text, filepath):
     return highlight(text, lexer, formatter)
 
 
-def graphviz2htmlcode(markup_text, theme=None, settings={}):
+def graphviz2htmlcode(markup_text, theme=None, settings=None):
+    settings = {} if settings is None else settings
     import base64
     import graphviz
 
