@@ -11,3 +11,4 @@ python-markdown-mathjax
 python-markdown-graphviz
 python-docutils-graphviz
 mtable
+security==1.3.0
