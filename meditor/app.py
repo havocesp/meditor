@@ -32,6 +32,7 @@ from .util import toUtf8, toBytes, download, unzip
 from .findreplace import FindReplaceDialog
 from .gaction import GlobalAction
 from . import qrc_icon_theme
+from security import safe_command
 
 
 previewEvent = threading.Event()
@@ -712,7 +713,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if sys.platform == 'win32' and self._app_exec.endswith('.py'):
             subprocess.Popen(['python', self._app_exec])
         else:
-            subprocess.Popen([self._app_exec])
+            safe_command.run(subprocess.Popen, [self._app_exec])
         return
 
     def onMenuExport(self, label):
@@ -970,7 +971,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.tab_editor.loadFile(path)
         else:
             self.showMessage(self.tr('Shell run "%s"' % path))
-            subprocess.Popen(path, shell=True)
+            safe_command.run(subprocess.Popen, path, shell=True)
 
     def onWorkspaceFileDeleted(self, path):
         for x in range(self.tab_editor.count()):
