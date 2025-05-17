@@ -239,7 +239,7 @@ class Workspace(QtWidgets.QTreeWidget):
 
     def onWindowsExplorer(self):
         path = self.getCurrentPath()
-        subprocess.Popen('explorer "%s"' % path, shell=True)
+        subprocess.Popen('explorer "%s"' % path, shell=False)
 
     def onOpenWorkspace(self):
         path = QtWidgets.QFileDialog.getExistingDirectory(
